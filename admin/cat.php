@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['create'])) {
           <form action="" method="POST">
             
             <div class="form-group">
-              <label>Food Menu</label>
+              <label>Category Name</label>
               <input class="form-control form-control-lg" type="text" name="category_name" placeholder="Create New Catagory">
             </div>
             
