@@ -5,7 +5,7 @@ class DatabaseConnection{
 	public $error;
 	
 	public function connectDataBase(){
-		$this->db = new mysqli('localhost', 'root', '', 'learner_db');
+		$this->db = new mysqli('localhost', 'root', '', 'online_edu');
 		if ($this->db == false) {
 			$this->error = "Connection fail".$this->db->connect_error;
 		}

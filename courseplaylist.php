@@ -83,14 +83,13 @@ $sending = $senddata->addvideo_t($_POST,$_FILES,$_GET['playlistid']);
 	</section>
 <?php }else{ ?>
 	<section class="search-section ss-other-page">
-		<div class="container">
+		<!-- <div class="container">
 			<div class="search-warp">
 				<div class="section-title text-white">
 					<h2><span>Search your course</span></h2>
 				</div>
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1">
-						<!-- search form -->
 						<form class="course-search-form">
 							<input type="text" placeholder="Course">
 							<input type="text" class="last-m" placeholder="Category">
@@ -99,7 +98,7 @@ $sending = $senddata->addvideo_t($_POST,$_FILES,$_GET['playlistid']);
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</section>
 <?php } ?>
 	
@@ -141,7 +140,7 @@ $sending = $senddata->addvideo_t($_POST,$_FILES,$_GET['playlistid']);
 
 						 ?>
 						<div style="background-color: #d82a4e; padding: 5px; color: #fff; text-align: center;"><a href="createquiz.php?playlistid=<?php echo $rows['course_id'] ?>">Create Quiz</a></div> <?php }else{ ?> <br>
-						<div style="background-color: #d82a4e; padding: 5px; color: #fff; text-align: center;"><a style="color: #fbf8f8;" href="quiz.php?courseid=<?php echo $_GET['playlistid']; ?>">Take Quiz</a> <?php } ?></div> <br>
+						<!-- <div style="background-color: #d82a4e; padding: 5px; color: #fff; text-align: center;"><a style="color: #fbf8f8;" href="quiz.php?courseid=<?php //	echo $_GET['playlistid']; ?>">Take Quiz</a> <?php } ?></div> <br> -->
 						<div class="section-title text-left p-0">
 						
 							<div id="flip">click to view</div>

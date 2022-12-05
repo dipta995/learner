@@ -36,12 +36,28 @@
 							<div class="course-text">
 		 						<h5><?php echo $value['course_title']; ?></h5>
 								<div class="students"><?php 
-								 
-
+								echo $viewcourse = $viewcls->enrolestudentcount($value['course_id']);
 								 
 								 ?> Students</div>
-								 <i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i>
-							</div>
+ <?php 
+								 if ($value['rat_total']>0) {
+								 	
+								 
+								  $ratting = ceil($value['rat_total']/$value['rat_hit']); 
+								  
+								 		 for ($i=1; $i <= $ratting; $i++) { 
+								 		 	 
+								 		 	echo "<i style='color:red;' class='fa fa-star'></i>";
+								 		 }for ($i=1; $i <= 5-$ratting; $i++) { 
+								 		 	 
+											echo "<i style='color:black;' class='fa fa-star'></i>";
+										}}else{
+								 		 	echo "Not Rated";
+								 		 }
+
+
+
+								 		?>							</div>
 							<div class="course-author">
 								<?php $teacher = $value['teacher_id'];
 								 echo $teacher = $viewcls->teacherview($teacher);

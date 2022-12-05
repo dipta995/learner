@@ -25,15 +25,30 @@
 							<div class="course-text">
 								<h5><?php echo $value['course_title']; ?></h5>
 								
-								<div class="students"> 0 Students</div><span>
+								<div class="students"> <?php 
+								echo $viewcourse = $viewcls->enrolestudentcount($value['course_id']);
+								 
+								 ?> Students</div><span>
 								 	<div class="star-rating">
-								 		
-								 		
-									<!--   <label for="5-stars" class="star">&#9733;</label> 
-									  <label for="4-stars" class="star">&#9733;</label>
-									  <label for="3-stars" class="star">&#9733;</label>
-									  <label for="2-stars" class="star">&#9733;</label>
-									  <label for="1-star" class="star">&#9733;</label> -->
+								 	<?php 
+								 if ($value['rat_total']>0) {
+								 	
+								 
+								  $ratting = ceil($value['rat_total']/$value['rat_hit']); 
+								  
+								 		 for ($i=1; $i <= $ratting; $i++) { 
+								 		 	 
+								 		 	echo "<i style='color:red;' class='fa fa-star'></i>";
+								 		 }for ($i=1; $i <= 5-$ratting; $i++) { 
+								 		 	 
+											echo "<i style='color:black;' class='fa fa-star'></i>";
+										}}else{
+								 		 	echo "Not Rated";
+								 		 }
+
+
+
+								 		?>			
 									</div>   
 								 </span>
 							</div>

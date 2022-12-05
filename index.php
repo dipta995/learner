@@ -71,7 +71,6 @@
 		<div class="container">
 			<div class="section-title mb-0">
 				<h2>Featured Courses</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
 			</div>
 		</div>
 		<div class="course-warp">
@@ -100,11 +99,31 @@
 							<div class="course-text">
 	 							<h5><?php echo $value['course_title']; ?></h5>
 								
-								<div class="students">0 Students</div><span>
+								<div class="students"><?php 
+								echo $viewcourse = $viewcls->enrolestudentcount($value['course_id']);
+								 
+								 ?> Students</div><span>
 								 	<div class="star-rating">
 
-									 <i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i>
-									</div>   
+									 <?php 
+								 if ($value['rat_total']>0) {
+								 	
+								 
+								  $ratting = ceil($value['rat_total']/$value['rat_hit']); 
+								  
+								 		for ($i=1; $i <= 5-$ratting; $i++) { 
+								 		 	 
+											echo "<i style='color:black;' class='fa fa-star'></i>";
+										} for ($i=1; $i <= $ratting; $i++) { 
+								 		 	 
+											echo "<i style='color:red;' class='fa fa-star'></i>";
+										}}else{
+								 		 	echo "Not Rated";
+								 		 }
+
+
+
+								 		?>												</div>   
 								 </span>
 							</div>
 							<div class="course-author">

@@ -58,17 +58,32 @@ $adminid= $_SESSION['admin_id'];
         Features
       </div>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
-          aria-controls="collapseForm">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm1" aria-expanded="true"
+          aria-controls="collapseForm1">
           <i class="fab fa-fw fa-wpforms"></i>
           <span>Customer Menu</span>
         </a>
-        <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+        <div id="collapseForm1" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Users</h6>
            
             <a class="collapse-item" href="teacher.php">Teachers</a>
             <a class="collapse-item" href="student.php">Students</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
+          aria-controls="collapseForm">
+          <i class="fab fa-fw fa-wpforms"></i>
+          <span>Sell Service</span>
+        </a>
+        <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Users</h6>
+           
+            <a class="collapse-item" href="studentenroll.php">Studetn Enrolls</a>
+            <a class="collapse-item" href="teachersell.php">Enrolled List</a>
           </div>
         </div>
       </li>
@@ -189,7 +204,7 @@ $adminid= $_SESSION['admin_id'];
                 </a> -->
                 <a class="dropdown-item" href="change_password.php">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Change Password
+                  Edit
                 </a>
                
                 <div class="dropdown-divider"></div>

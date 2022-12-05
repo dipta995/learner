@@ -206,7 +206,7 @@ $deletedata = new DeleteClass();
 							<nav class="main-menu">
 								<ul>
 									<li><a href="index.php">Home</a></li>
-									<li><a href="#">About us</a></li>
+									<li><a href="enrollcart.php">Enroll List</a></li>
 									<li><a href="courses.php">Courses</a></li>
 									<?php
 									if (isset($_SESSION['teacher_auth']) == 'teacher_auth') {

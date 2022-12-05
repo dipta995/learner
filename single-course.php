@@ -1,4 +1,4 @@
-	<?php include 'include/header.php'; 
+<?php include 'include/header.php'; 
 
 $protocol = $_SERVER['SERVER_PROTOCOL'];
 if (strpos($protocol,"HTTPS")) {
@@ -58,7 +58,7 @@ $redirect_link_var = $protocol.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 			<div class="course-meta-area">
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1">
-						<div class="course-note">Featured Course</div>
+						<div class="course-note"> <?php echo $value['price']; ?> Taka</div>
 						<h3><?php echo $value['course_title']; ?></h3>
 						<div class="course-metas">
 							<div class="course-meta">
@@ -81,17 +81,54 @@ $redirect_link_var = $protocol.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 							<div class="course-meta">
 								<div class="cm-info">
 									<h6>Students</h6>
-									<p>120 Registered Students</p>
+									<p><?php 
+								echo $viewcourse = $viewcls->enrolestudentcount($_GET['playlistid']);
+								 
+								 ?> Registered Students</p>
 								</div>
 							</div>
 							<div class="course-meta">
 								<div class="cm-info">
 									<h6>Reviews</h6>
-									<i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i>
+									<p><?php echo $value['rat_hit'] ?> Reviews <span class="rating">
+										
+									 
+										<?php if ($value['rat_total']>0) {
+										 $ratting = ceil($value['rat_total']/$value['rat_hit']); 
+								 		 for ($i=1; $i <= $ratting; $i++) { 
+								 		 	 
+								 		 	echo "<i style='color:red;' class='fa fa-star'></i>";
+								 		 } for ($i=1; $i <= 5-$ratting; $i++) { 
+								 		 	 
+											echo "<i style='color:black;' class='fa fa-star'></i>";
+										}}else{
+								 		 	echo "Not Rated";
+								 		 }
+
+
+
+								 		?>
+									</span></p>
 								</div>
 							</div>
 						</div>
-						
+							<?php 
+							if (isset($enrollmsg)) {
+								echo $enrollmsg;
+							}
+							 ?><br>
+						<form method="post" action="">
+						<!-- <a href="#" class="site-btn price-btn">Course Fee: <?php //echo $value['price']; ?> Taka</a> -->
+							<input type="hidden" value="<?php echo $value['course_id']; ?>" name="course_id">
+							<input type="hidden" value="<?php echo $student_id;  ?>" name="student_id">
+							<input type="hidden" value="<?php echo $value['price']; ?>" name="price">
+								<?php 
+									if (isset($_SESSION['teacher_auth'])=='teacher_auth') {}else{
+									 
+								?>
+							<input type="submit" class="site-btn buy-btn" name="buycourse" value="Register Now">
+						<?php } ?>
+						</form>
 						<!-- <a href="payment.php" class="site-btn buy-btn">Buy This Course</a> -->
 					</div>
 				</div>
@@ -172,11 +209,60 @@ $redirect_link_var = $protocol.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
 
 						
+							<?php 
+							$commentview = $viewcls->viewcommentbyid($_GET['playlistid']);
+							if ($commentview) {
+								foreach ($commentview as $comval) {
+							 ?>
 							  
-						   
+							 	<div class="commentbox row">
+								<div class="col-md-8">
+									<h3><img class="commenterimg" src="img/authors/6.jpg"><?php echo $comval['student_name']; ?></h3>
+									<p>Comment: <?php echo $comval['comment']; ?></p>
+									<?php $comid = $comval['comment_id'] ?>
 
-										
-						
+									<div class="replaycom row">
+						    <?php 
+							$replayview = $viewcls->viewreplayid($comid);
+							if ($replayview) {
+								foreach ($replayview as $rview) {
+							 ?>
+
+										<div class=" col-sm-8">
+											<h3>Name: <?php echo $rview['teacher_name']; ?></h3>
+									<p>Comment: <?php echo $rview['replay']; ?></p><hr>
+										</div>
+
+										<div class="col-sm-4"><p>date: <?php echo $rview['date']; ?></p><hr></div>	
+
+
+									<?php }} ?>
+									<?php 
+									if (isset($_SESSION['teacher_auth'])=='teacher_auth') {
+									 
+								?>
+									 <form method="post" action="" class="replay-frm">
+										<textarea name="replay"></textarea> 
+										<input type="hidden" value="<?php echo $comid; ?>" name="comment_id">
+										<input class="btn btn-success replaybtn" type="submit" value="Replay" name="replay_action">
+									</form>
+								<?php }else{} ?>
+
+									</div>
+								</div>
+								<div class="col-md-4">
+									<span>Date: <p><?php echo $comval['date']; ?></p></span>
+								</div>
+							 		
+							 </div>
+
+						<?php }} ?>
+
+						 <form method="post" action="" class="comment-frm">
+							<textarea name="comment"></textarea>
+							<input class="btn btn-success commentbtn" type="submit" value="Comment" name="comment_action">
+						</form>
+
 
 
 
@@ -264,22 +350,74 @@ $redirect_link_var = $protocol.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 								foreach ($relatedcrs as $crs) {
 							 ?>
 
-				<div class="course-item">
-					<div class="course-thumb set-bg" data-setbg="<?php echo $crs['course_image'] ?>">
-						<div class="price"><?php echo $crs['price']; ?></div>
-					</div>
-					<div class="course-info">
-						<div class="course-text">
-							<h5>Art & Crafts</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur</p>
-							<div class="students">120 Students</div>
+
+
+
+ 					<div class="course-item">
+						<a href="single-course.php?playlistid=<?php echo $value['course_id'] ?>">
+						<div class="course-thumb set-bg" data-setbg="<?php echo $value['course_image']; ?>">
+							<div class="price">Price: $<?php echo $value['price']; ?></div>
 						</div>
-						<div class="course-author">
-							<div class="ca-pic set-bg" data-setbg="img/authors/1.jpg"></div>
-							<p>William Parker, <span>Developer</span></p>
+						<div class="course-info">
+							<div class="course-text">
+	 							<h5><?php echo $value['course_title']; ?></h5>
+								
+								<div class="students"><?php 
+								echo $viewcourse = $viewcls->enrolestudentcount($value['course_id']);
+								 
+								 ?> Students</div><span>
+								 	<div class="star-rating">
+
+									 <?php 
+								 if ($value['rat_total']>0) {
+								 	
+								 
+								  $ratting = ceil($value['rat_total']/$value['rat_hit']); 
+								  for ($i=1; $i <= 5-$ratting; $i++) { 
+								 		 	 
+									echo "<i style='color:black;' class='fa fa-star'></i>";
+								}
+								  for ($i=1; $i <= $ratting; $i++) { 
+								 		 	 
+									echo "<i style='color:red;' class='fa fa-star'></i>";
+								} 
+										
+										}else{
+								 		 	echo "Not Rated";
+								 		 }
+
+
+
+								 		?>									</div>   
+								 </span>
+							</div>
+							<div class="course-author">
+								
+								<?php $teacher = $value['teacher_id'];
+								 echo $teacher = $viewcls->teacherview($teacher);
+								
+
+
+								 ?>, <span>Teacher</span></p>
+							</div>
 						</div>
+
+					</a>
 					</div>
-				</div>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 			<?php }} ?>
 				<!-- course -->
