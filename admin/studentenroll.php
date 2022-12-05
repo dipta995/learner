@@ -20,7 +20,13 @@
                             </thead>
                             <tbody>
                     <?php 
-                 
+                 if (isset($_GET['remove'])) {
+                  if($viewcls->removeEnrole($_GET['remove']))  	
+                  {
+      
+                    echo "<script>window.location='studentenroll.php';</script>";
+                  }
+                }
                     if (isset($_GET['accept'])) {
                         echo $senddata->confirmenrole($_GET['accept']);
                     }
@@ -37,7 +43,10 @@
                                 <td><?php echo $value['course_title']; ?></td>
                                 <td><?php echo $value['price']; ?> Taka</td>
                     
-                                <td><a class="btn btn-danger" href="?accept=<?php echo $value['enrole_id']; ?>">aprove</a></td>
+                                <td><a class="btn btn-danger" href="?accept=<?php echo $value['enrole_id']; ?>">aprove</a>
+                                <a class="btn btn-danger" href="?remove=<?php echo $value['enrole_id']; ?>">Remove</a> 
+
+                              </td>
                               </tr>
              
                      <?php }} ?>

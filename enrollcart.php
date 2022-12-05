@@ -50,7 +50,8 @@
 	  <td><?php if ($value['pay_status']==1) { ?>
 			<a class="btn btn-info" href="courseplaylist.php?playlistid=<?php echo $value['course_id'] ?>">Preview</a>
 			<?php }else{ ?>
-			<button class="btn btn-success" href="">Pending</button> <a class="btn btn-danger" href="?remove=<?php echo $value['enrole_id']; ?>">Remove</a> <?php } ?>
+			<button class="btn btn-success" href="">Pending</button> 
+			<a class="btn btn-danger" href="?remove=<?php echo $value['enrole_id']; ?>">Remove</a> <?php } ?>
 		</td>
     </tr>
    
