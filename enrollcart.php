@@ -10,43 +10,57 @@
 
 		                                    
 			<div class="row course-items-area">
+			<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Course Name</th>
+      <th scope="col">Teacher</th>
+      <th scope="col">Students</th>
+      <th scope="col">Price</th>
+      <th scope="col">Banner</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
 					<?php 
+					if (isset($_GET['remove'])) {
+						if($viewcls->removeEnrole($_GET['remove']))  	
+						{
+
+							echo "<script>window.location='enrollcart.php';</script>";
+						}
+					}
 					
 						$viewcourse = $viewcls->allcoursesenroll($student_id);
 						foreach ($viewcourse as $value) {
 					?> 
-				<div class="mix col-lg-3 col-md-4 col-sm-6 finance">
-					<div class="course-item">
-						<?php if ($value['pay_status']==1) { ?>
-							<a href="courseplaylist.php?playlistid=<?php echo $value['course_id'] ?>">
-						<?php } ?>
-					
-						<div class="course-thumb set-bg" data-setbg="<?php echo $value['course_image']; ?>">
-							<div class="price">Price: $<?php echo $value['price']; ?></div>
-						</div>
-						<div class="course-info">
-							<div class="course-text">
-		 						<h5><?php echo $value['course_title']; ?></h5> 
-								<div class="students"><?php 
-								echo $viewcourse = $viewcls->enrolestudentcount($value['course_id']);
-								 
-								 ?> Students</div>
-							</div>
-							<div class="course-author">
-								<?php $teacher = $value['teacher_id'];
-								 echo $teacher = $viewcls->teacherview($teacher);
-								
 
-
-								 ?>, <span>Teacher</span></p>
-							</div>
-						</div>
-				</a>
-					</div>
-				</div>
+    <tr>
+      <th scope="row">1</th>
+      <td><?php echo $value['course_title']; ?></td>
+      <td>
+		<?php $teacher = $value['teacher_id']; 
+	  echo $teacher = $viewcls->teacherview($teacher); ?>
+	  </td>
+      <td><?php echo $viewcourse = $viewcls->enrolestudentcount($value['course_id']);?>
+	  </td>
+	  <td><?php echo $value['price']; ?> Taka</td>
+	  <td><img style="height: 60px;" src="<?php echo $value['course_image']; ?>" alt=""></td>
+	  <td><?php if ($value['pay_status']==1) { ?>
+			<a class="btn btn-info" href="courseplaylist.php?playlistid=<?php echo $value['course_id'] ?>">Preview</a>
+			<?php }else{ ?>
+			<button class="btn btn-success" href="">Pending</button> <a class="btn btn-danger" href="?remove=<?php echo $value['enrole_id']; ?>">Remove</a> <?php } ?>
+		</td>
+    </tr>
+   
+	<?php }   ?>
+  </tbody>
+</table>
+				
+				
 			 
 			 
-			<?php }   ?>
 			 
 			</div>
 		 

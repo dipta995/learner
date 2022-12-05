@@ -309,7 +309,7 @@ public function logincheckteacher($table_name,$email,$pass,$mail,$ps,$link){
 
 
 
-						public function searchkey($key){
+		public function searchkey($key){
 							$sqlquery = "SELECT * FROM course_table WHERE course_title LIKE '%$key%' OR course_details LIKE '%$key%'";
 							$result = $this->queryfunk($sqlquery);
 							if (mysqli_num_rows($result)<=0) {
@@ -321,6 +321,16 @@ public function logincheckteacher($table_name,$email,$pass,$mail,$ps,$link){
 							}
 
 						}
+
+
+
+		public function removeEnrole($enrole_id)
+		{
+			$query = "Delete FROM enrole_student_list WHERE enrole_id = $enrole_id";
+			return  $this->queryfunk($query);
+
+
+		}
 						
 
 
