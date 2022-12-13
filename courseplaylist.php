@@ -139,8 +139,11 @@ $sending = $senddata->addvideo_t($_POST,$_FILES,$_GET['playlistid']);
 						if (isset($_SESSION['teacher_auth'])=='teacher_auth') {
 
 						 ?>
-						<div style="background-color: #d82a4e; padding: 5px; color: #fff; text-align: center;"><a href="createquiz.php?playlistid=<?php echo $rows['course_id'] ?>">Create Quiz</a></div> <?php }else{ ?> <br>
-						<!-- <div style="background-color: #d82a4e; padding: 5px; color: #fff; text-align: center;"><a style="color: #fbf8f8;" href="quiz.php?courseid=<?php //	echo $_GET['playlistid']; ?>">Take Quiz</a> <?php } ?></div> <br> -->
+						<!-- <div style="background-color: #d82a4e; padding: 5px; color: #fff; text-align: center;"> -->
+						<!-- <a href="createquiz.php?playlistid=<?php //echo $rows['course_id'] ?>">Create Quiz</a></div> <?php }else{ ?> -->
+							 <br>
+						<!-- <div style="background-color: #d82a4e; padding: 5px; color: #fff; text-align: center;">
+							<a style="color: #fbf8f8;" href="quiz.php?courseid=<?php //	echo $_GET['playlistid']; ?>">Take Quiz</a> <?php } ?></div> <br> -->
 						<div class="section-title text-left p-0">
 						
 							<div id="flip">click to view</div>
