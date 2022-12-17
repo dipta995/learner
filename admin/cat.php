@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['create'])) {
           <form action="" method="POST">
 
             <div class="form-group">
-              <label>Category</label>
+              <label>Category name</label>
               <input class="form-control form-control-lg" type="text" name="category_name" value="<?php echo $val['category_name']; ?>">
             </div>
 
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['create'])) {
           <form action="" method="POST">
 
             <div class="form-group">
-              <label>Food Menu</label>
+              <label>Category name</label>
               <input class="form-control form-control-lg" type="text" name="category_name" placeholder="Create New Catagory">
             </div>
 

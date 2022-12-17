@@ -30,8 +30,8 @@
 						
 					</div>
 
-					<div class="form-group" data-validate="Please enter email: ex@abc.xyz">
-						<input class="form-control" type="text" name="price" placeholder="price">
+					<div class="form-group">
+						<input class="form-control" type="number" required name="price" placeholder="price">
 						
 					</div>
 
