@@ -170,7 +170,7 @@
 							</div>
 
 							<div class="form-group">
-								<input type="radio" name="gender" value="male">
+								<input type="radio" checked name="gender" value="male">
 								<label style="margin-top: 3px;
 margin-left: 10px;
 margin-right: 45px;" for="male">Male</label><br>

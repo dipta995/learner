@@ -49,10 +49,29 @@ class InsertClass extends DatabaseConnection
 		$student_phone = mysqli_real_escape_string($this->db,$input['student_phone']);
 		$student_password = mysqli_real_escape_string($this->db,$input['student_password']);
 		$gender = mysqli_real_escape_string($this->db,$input['gender']);
-
+		$query = "SELECT * FROM student_table WHERE student_email='$student_email'  limit 1";
+		$query1 = "SELECT * FROM student_table WHERE  student_phone='$student_phone' limit 1";
+        $res = $this->queryfunk($query);
+        $res1 = $this->queryfunk($query1);
 		if (empty($student_name) || empty($student_email) || empty($student_phone) || empty($student_password)) {
 			return $message = "<div class='alert alert-warning' role='alert'>Field must not be empty!</div>";
-		} else{
+		} elseif (!preg_match("/^[a-zA-z ]*$/", $student_name)) {
+            return $message = "<div class='alert alert-danger'>Only alphabets and whitespace are allowed for  name!</div>";
+            
+        }  elseif (mysqli_num_rows($res) > 0) {
+            return $message = "<div class='alert alert-danger'>This Email has already been Registered!</div>";
+            
+        } elseif (mysqli_num_rows($res1) > 0) {
+            return $message = "<div class='alert alert-danger'>This mobile no. has already been Registered!</div>";
+            
+        } elseif (strlen($student_phone) != 11) {
+            return $message = "<div class='alert alert-danger'>Mobile must have 11 digits!</div>";
+            
+        } elseif (strlen($student_password) < 6) {
+            return $message = "<div class='alert alert-danger'>Password must have 6 digits.</div>";
+            
+		
+		}else{
 			$query = "INSERT INTO student_table(student_name,student_email,student_phone,student_password,gender)VALUES('$student_name','$student_email','$student_phone','$student_password','$gender')"; 
 			$result = $this->queryfunk($query);
 			if ($result) {
@@ -69,10 +88,28 @@ class InsertClass extends DatabaseConnection
 			$teacher_phone = mysqli_real_escape_string($this->db,$input['teacher_phone']);
 			$teacher_password = mysqli_real_escape_string($this->db,$input['teacher_password']);
 			$account_no = mysqli_real_escape_string($this->db,$input['account_no']);
-
+			$query = "SELECT * FROM teacher_table WHERE teacher_email='$teacher_email'  limit 1";
+			$query1 = "SELECT * FROM teacher_table WHERE  teacher_phone='$teacher_phone' limit 1";
+			$res = $this->queryfunk($query);
+			$res1 = $this->queryfunk($query1);
 			if (empty($teacher_name) || empty($teacher_email) || empty($teacher_phone) || empty($teacher_password)) {
 				return $message = "<div class='alert alert-warning' role='alert'>Field must not be empty!</div>";
-			} else{
+			}  elseif (!preg_match("/^[a-zA-z ]*$/", $teacher_name)) {
+				return $message = "<div class='alert alert-danger'>Only alphabets and whitespace are allowed for  name!</div>";
+				
+			}  elseif (mysqli_num_rows($res) > 0) {
+				return $message = "<div class='alert alert-danger'>This Email has already been Registered!</div>";
+				
+			} elseif (mysqli_num_rows($res1) > 0) {
+				return $message = "<div class='alert alert-danger'>This mobile no. has already been Registered!</div>";
+				
+			} elseif (strlen($teacher_phone) != 11) {
+				return $message = "<div class='alert alert-danger'>Mobile must have 11 digits!</div>";
+				
+			} elseif (strlen($teacher_password) < 6) {
+				return $message = "<div class='alert alert-danger'>Password must have 6 digits.</div>";
+			
+			}else{
 				$query = "INSERT INTO teacher_table(teacher_name,teacher_email,teacher_phone,teacher_password,account_no)VALUES('$teacher_name','$teacher_email','$teacher_phone','$teacher_password','$account_no')"; 
 				$result = $this->queryfunk($query);
 				if ($result) {
