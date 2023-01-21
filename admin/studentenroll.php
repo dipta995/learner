@@ -10,11 +10,11 @@
                               <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Studnet Name</th>
-                                <th scope="col">Email</th>
                                 <th scope="col">Course Name</th>
                                 <th scope="col">Course Fee</th>
-                     
-                                <th scope="col">Button</th>
+                                <th scope="col">Student Account(Payment Type)</th>
+
+                                <th scope="col">Action</th>
 
                               </tr>
                             </thead>
@@ -39,10 +39,10 @@
                               <tr>
                                 <th scope="row"><?php echo $i; ?></th>
                                 <td><?php echo $value['student_name']; ?></td>
-                                <td><?php echo $value['student_email']; ?></td>
                                 <td><?php echo $value['course_title']; ?></td>
                                 <td><?php echo $value['price']; ?> Taka</td>
-                    
+                                <td><?php echo $value['student_account']; ?>(<?php echo $value['student_payment_type']; ?>)</td>
+
                                 <td><a class="btn btn-danger" href="?accept=<?php echo $value['enrole_id']; ?>">aprove</a>
                                 <a class="btn btn-danger" href="?remove=<?php echo $value['enrole_id']; ?>">Remove</a> 
 

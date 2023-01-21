@@ -45,7 +45,7 @@
 						<div class="ci-text">
 							<h5 style="text-align: center;"><?php echo $value['category_name']; ?></h5>
 							<p></p>
-							<span>0 Courses</span> 
+							<span><?php echo $viewcourse = $viewcls->coursecount($value['category_id']); ?> Courses</span> 
 						</div>
 						</a>
 					</div>
@@ -93,7 +93,7 @@
 					<div class="course-item">
 						<a href="single-course.php?playlistid=<?php echo $value['course_id'] ?>">
 						<div class="course-thumb set-bg" data-setbg="<?php echo $value['course_image']; ?>">
-							<div class="price">Price: $<?php echo $value['price']; ?></div>
+							<div class="price">Price: <?php echo $value['price']; ?> Taka</div>
 						</div>
 						<div class="course-info">
 							<div class="course-text">

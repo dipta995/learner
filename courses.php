@@ -30,7 +30,7 @@
 					<div class="course-item">
 					<a href="single-course.php?playlistid=<?php echo $value['course_id'] ?>">
 						<div class="course-thumb set-bg" data-setbg="<?php echo $value['course_image']; ?>">
-							<div class="price">Price: $<?php echo $value['price']; ?></div>
+							<div class="price">Price: <?php echo $value['price']; ?> Taka</div>
 						</div>
 						<div class="course-info">
 							<div class="course-text">

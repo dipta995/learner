@@ -415,7 +415,8 @@ echo "ALREADY RATED";
 						SET
 						teacher_payment_type = '$teacher_payment_type',
 						teacher_account = '$teacher_account',
-						 t_pay = 1
+						 pay_status = 1,
+						 t_pay = 1,
 						  WHERE enrole_id = '$enrole_id'";
 					$uprow = $this->queryfunk($sqls);
 					 

@@ -165,7 +165,7 @@ if ($viewcat) {
 								} else {
 
 								?>
-								<span id="payment-form">Enroll now</span>
+								<span class="btn btn-info" id="payment-form">Enroll now</span>
 								<div  class="row" style="background:rgb(166 160 166); border-radius: 10px; display: none;">
 									<div class="col-md-6">
 									<select style="width: 300px; padding: 10px; margin-top: 23px; border-radius: 10px;" name="student_payment_type" id="">
@@ -176,7 +176,7 @@ if ($viewcat) {
 									<div  class="col-md-6">
 									<input style="width: 300px; padding: 10px; margin-top: 23px; border-radius: 10px;" placeholder="account-number" type="text" name="student_account">
 									</div>
-									<input style="margin: 0 auto; margin-top : 10px;" type="submit" class="site-btn buy-btn" name="buycourse" value="Register Now">
+									<input style="margin: 0 auto; margin-top : 10px;" type="submit" class="site-btn buy-btn" name="buycourse" value="Pay Ane Confirm">
 
 								</div>
 								
