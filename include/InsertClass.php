@@ -126,6 +126,8 @@ class InsertClass extends DatabaseConnection
 		$student_id = mysqli_real_escape_string($this->db,$data['student_id']);
 		$course_id = mysqli_real_escape_string($this->db,$data['course_id']);
 		$price = mysqli_real_escape_string($this->db,$data['price']);
+		$student_payment_type = mysqli_real_escape_string($this->db,$data['student_payment_type']);
+		$student_account = mysqli_real_escape_string($this->db,$data['student_account']);
 		$sqlquery = "SELECT * FROM enrole_student_list WHERE student_id = '$student_id' AND course_id ='$course_id'";
 				$getre = $this->queryfunk($sqlquery);
 				//$value = mysqli_fetch_array($result);
@@ -137,7 +139,7 @@ class InsertClass extends DatabaseConnection
 
 				}else{
 
-					$query = "INSERT INTO enrole_student_list(student_id,course_id,price)VALUES('$student_id','$course_id','$price')"; 
+					$query = "INSERT INTO enrole_student_list(student_id,course_id,price,student_account,student_payment_type)VALUES('$student_id','$course_id','$price','$student_account','$student_payment_type')"; 
 			$result = $this->queryfunk($query);
 			if ($result) {
 				return $message = "<div class='alert alert-success' role='alert'>Successfully Registered</div>";
@@ -405,15 +407,21 @@ echo "ALREADY RATED";
 					}
 				}
 			
-	public function paymentconfirm($enrole_id){
+	public function paymentconfirm($enrole_id,$data){
+		$teacher_payment_type = mysqli_real_escape_string($this->db,$data['teacher_payment_type']);
+		$teacher_account = mysqli_real_escape_string($this->db,$data['teacher_account']);
 				 
-				 
-						$sqls= "UPDATE enrole_student_list SET t_pay = 1 WHERE enrole_id = '$enrole_id'";
+						$sqls= "UPDATE enrole_student_list 
+						SET
+						teacher_payment_type = '$teacher_payment_type',
+						teacher_account = '$teacher_account',
+						 t_pay = 1
+						  WHERE enrole_id = '$enrole_id'";
 					$uprow = $this->queryfunk($sqls);
 					 
 						if ($uprow) {
-							return $message = "<div class='alert alert-success' role='alert'>Approved</div>";
-							//return "<script> window.location = 'enrollcart.php';</script>";
+							// return $message = "<div class='alert alert-success' role='alert'>Approved</div>";
+							return "<script> window.location = 'enrollcart.php';</script>";
 						}
 					}
 				

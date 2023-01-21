@@ -165,7 +165,21 @@ if ($viewcat) {
 								} else {
 
 								?>
-									<input type="submit" class="site-btn buy-btn" name="buycourse" value="Register Now">
+								<span id="payment-form">Enroll now</span>
+								<div  class="row" style="background:rgb(166 160 166); border-radius: 10px; display: none;">
+									<div class="col-md-6">
+									<select style="width: 300px; padding: 10px; margin-top: 23px; border-radius: 10px;" name="student_payment_type" id="">
+									<option value="Bkash">Bkash</option>
+									<option value="Nogod">Nogod</option>
+								</select>
+									</div>
+									<div  class="col-md-6">
+									<input style="width: 300px; padding: 10px; margin-top: 23px; border-radius: 10px;" placeholder="account-number" type="text" name="student_account">
+									</div>
+									<input style="margin: 0 auto; margin-top : 10px;" type="submit" class="site-btn buy-btn" name="buycourse" value="Register Now">
+
+								</div>
+								
 								<?php } ?>
 							</form>
 							<!-- <a href="payment.php" class="site-btn buy-btn">Buy This Course</a> -->
@@ -492,6 +506,11 @@ if ($viewcat) {
 	$(document).ready(function() {
 		$("#flip").click(function() {
 			$("#panel").slideToggle("slow");
+		});
+
+		$("#payment-form").click(function() {
+			$(".row").show();
+			$("#payment-form").hide ();
 		});
 	});
 </script>

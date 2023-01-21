@@ -10,41 +10,57 @@
                               <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Teacher Name</th>
-                                <th scope="col">Email</th>
                                 <th scope="col">Course Name</th>
                                 <th scope="col">Course Fee</th>
-                                <th scope="col">Payable Fee</th>
-                     
+                                <th scope="col">Student Account(Payment Type)</th>
+                                <th scope="col">Teacher Payable Fee</th>
+                                <td>Payement</td>
                                 <th scope="col">Button</th>
 
                               </tr>
                             </thead>
                             <tbody>
                     <?php 
-                    if (isset($_GET['tpay'])) {
-                        echo $senddata->paymentconfirm($_GET['tpay']);
-                    }
                     $viewcat = $viewcls->teachersell();
                     if ($viewcat) {
-                        $i = 0;
-                    foreach ($viewcat as $value) {
+                      $i = 0;
+                      foreach ($viewcat as $value) {
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                      echo $senddata->paymentconfirm($value['enrole_id'],$_POST);
+                        }
                         $i++;
                                  ?>
                               <tr>
                                 <th scope="row"><?php echo $i; ?></th>
                                 <td><?php echo $value['teacher_name']; ?></td>
-                                <td><?php echo $value['teacher_email']; ?></td>
                                 <td><?php echo $value['course_title']; ?></td>
                                 <td><?php echo ($value['price']); ?> Taka</td>
+                                <td><?php echo $value['student_account']; ?>(<?php echo $value['student_payment_type']; ?>)</td>
                                 <td><?php echo ($value['price'])-($value['price']*.2); ?> Taka</td>
-                    
-                                <td>
+                                <form method="post" action="">
+                                  <td>
+                                  <?php if ($value['t_pay']==0) { ?>
+                                    <div class="form-group">
+                                      <select name="teacher_payment_type"  class="from-controll" id="">
+                                      <option value="Bkash">Bkash</option>
+									                    <option value="Nogod">Nogod</option>
+                                      </select>
+                                    </div>
+                                    <div class="form-group">
+                                      <input type="text" name="teacher_account" class="from-controll" readonly value="<?php echo  $value['account_no'] ?>" >
+                                    </div>
+                                    <?php } ?>
+                                  </td>
+                                  <td>
                                     <?php if ($value['t_pay']==0) { ?>
-                                         <a class="btn btn-danger" href="?tpay=<?php echo $value['enrole_id']; ?>">Confirm Now</a>
-                                  <?php  }else{ 
-                                    echo "<button class='btn btn-success'>Paid</button>";
-                                  } ?>
+                                      <button class="btn btn-danger" >Confirm Now</button>
+                                      <?php  }else{ 
+                                        echo "<button class='btn btn-success'>Paid</button>";
+                                      } ?>
+                                     
                                    </td>
+                                  </form>
                               </tr>
              
                      <?php }} ?>
