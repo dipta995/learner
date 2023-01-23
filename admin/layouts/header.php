@@ -82,7 +82,7 @@ $adminid= $_SESSION['admin_id'];
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Users</h6>
            
-            <a class="collapse-item" href="studentenroll.php">Studetn Enrolls</a>
+            <a class="collapse-item" href="studentenroll.php">Student Enrolls</a>
             <a class="collapse-item" href="teachersell.php">Enrolled List</a>
           </div>
         </div>

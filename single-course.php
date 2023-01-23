@@ -169,6 +169,7 @@ if ($viewcat) {
 								<div  class="row" style="background:rgb(166 160 166); border-radius: 10px; display: none;">
 									<div class="col-md-6">
 									<select style="width: 300px; padding: 10px; margin-top: 23px; border-radius: 10px;" name="student_payment_type" id="">
+									<option value="">--Choose--</option>
 									<option value="Bkash">Bkash</option>
 									<option value="Nogod">Nogod</option>
 								</select>
@@ -176,7 +177,7 @@ if ($viewcat) {
 									<div  class="col-md-6">
 									<input style="width: 300px; padding: 10px; margin-top: 23px; border-radius: 10px;" placeholder="account-number" type="text" name="student_account">
 									</div>
-									<input style="margin: 0 auto; margin-top : 10px;" type="submit" class="site-btn buy-btn" name="buycourse" value="Pay Ane Confirm">
+									<input style="margin: 0 auto; margin-top : 10px;" type="submit" class="site-btn buy-btn" name="buycourse" value="Pay And Confirm">
 
 								</div>
 								
