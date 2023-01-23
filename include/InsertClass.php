@@ -416,13 +416,13 @@ echo "ALREADY RATED";
 						teacher_payment_type = '$teacher_payment_type',
 						teacher_account = '$teacher_account',
 						 pay_status = 1,
-						 t_pay = 1,
+						 t_pay = 1
 						  WHERE enrole_id = '$enrole_id'";
 					$uprow = $this->queryfunk($sqls);
 					 
 						if ($uprow) {
 							// return $message = "<div class='alert alert-success' role='alert'>Approved</div>";
-							return "<script> window.location = 'enrollcart.php';</script>";
+							return "<script> window.location = 'teachersell.php';</script>";
 						}
 					}
 				
