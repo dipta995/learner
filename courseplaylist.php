@@ -175,7 +175,7 @@ if (isset($_POST['pdf-up'])) {
 								<?php 
 								$singlecourse = $viewcls->videogetall($_GET['playlistid']);
 								if ($singlecourse) {
-								foreach ($singlecourse as $row) {
+					 			foreach ($singlecourse as $row) {
 								 ?>
 							<p style="float: left; color: white;width: 100%;"><a style="color: white;font-size: 16px;" href="?&playlistid=<?php echo $_GET['playlistid'] ?>&vieolink=<?php echo $row['video_file']; ?>"><?php echo $row['video_title']; ?></a></p>
 
