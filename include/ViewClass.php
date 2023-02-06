@@ -176,6 +176,11 @@ public function givenansview($qid,$student_id){
 		$result = $this->queryfunk_help($sqlquery);
 		return $result;
 		}
+		public function pdflist($id){
+			$sqlquery = "SELECT * FROM pdf_table WHERE course_id = '$id'";
+		$result = $this->queryfunk_help($sqlquery);
+		return $result;
+		}
 	/*	public function titleview($id){
 			$sqlquery = "SELECT * FROM  course_table WHERE course_id = '$id'";
 		$result = $this->queryfunk_help($sqlquery);
@@ -333,8 +338,26 @@ public function logincheckteacher($table_name,$email,$pass,$mail,$ps,$link){
 		}
 						
 
+		public function teacherAmount($id,$paytype=null)
+		{
+			$total = 0;
+			$sqlquery = "SELECT * FROM enrole_student_list LEFT JOIN course_table ON course_table.course_id = enrole_student_list.course_id LEFT JOIN teacher_table ON teacher_table.teacher_id = course_table.teacher_id WHERE course_table.teacher_id = $id and enrole_student_list.t_pay =$paytype";
+									$result = $this->queryfunk($sqlquery);
+									foreach($result as $val){
+										$total+=$val['teacher_pay'];
+									}
+									return $total;
+		}
 
+		public function teacherAmountDetails($id)
+		{
+			$sqlquery = "SELECT * FROM enrole_student_list LEFT JOIN course_table ON course_table.course_id = enrole_student_list.course_id LEFT JOIN teacher_table ON teacher_table.teacher_id = course_table.teacher_id WHERE course_table.teacher_id = $id";
+			$result = $this->queryfunk($sqlquery);
 
+									
+									return $result;
+		}
+				
 	
 }
  ?>

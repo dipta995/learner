@@ -209,9 +209,10 @@ $deletedata = new DeleteClass();
 									<li><a href="enrollcart.php">Enroll List</a></li>
 									<li><a href="courses.php">Courses</a></li>
 									<?php
-									if (isset($_SESSION['teacher_auth']) == 'teacher_auth') {
-
-									?>
+									if (isset($_SESSION['teacher_auth']) == 'teacher_auth') { ?>
+										<li><a href="teacher-account-history.php">
+											<?php echo $viewcls->teacherAmount($_SESSION['student_id'],1) ?>
+										 Taka</a></li>
 										<li><a href="my_course.php">My Courses</a></li>
 									<?php } ?>
 									<!-- <li><a href="blog.php">News</a></li> -->

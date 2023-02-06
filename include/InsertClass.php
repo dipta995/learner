@@ -64,7 +64,11 @@ class InsertClass extends DatabaseConnection
         } elseif (mysqli_num_rows($res1) > 0) {
             return $message = "<div class='alert alert-danger'>This mobile no. has already been Registered!</div>";
             
-        } elseif (strlen($student_phone) != 11) {
+        }elseif(!preg_match("/^[01]{2}[0-9]{9}+$/", $student_phone)) {
+
+			return $message = "<div class='alert alert-danger'>Invalid Mobile Use 01 Before !</div>";
+			
+		} elseif (strlen($student_phone) != 11) {
             return $message = "<div class='alert alert-danger'>Mobile must have 11 digits!</div>";
             
         } elseif (strlen($student_password) < 6) {
@@ -103,8 +107,9 @@ class InsertClass extends DatabaseConnection
 			} elseif (mysqli_num_rows($res1) > 0) {
 				return $message = "<div class='alert alert-danger'>This mobile no. has already been Registered!</div>";
 				
-			} elseif (strlen($teacher_phone) != 11) {
-				return $message = "<div class='alert alert-danger'>Mobile must have 11 digits!</div>";
+			} elseif(!preg_match("/^[01]{2}[0-9]{9}+$/", $teacher_phone)) {
+
+				return $message = "<div class='alert alert-danger'>Invalid Mobile Use 01 Before !</div>";
 				
 			} elseif (strlen($teacher_password) < 6) {
 				return $message = "<div class='alert alert-danger'>Password must have 6 digits.</div>";
@@ -283,12 +288,54 @@ public function updateteacherprofile($data,$files,$teacher_id){
 	         $query = "INSERT INTO video_table(video_title,course_id,video_file)VALUES('$video_title','$id','$uploaded_image')"; 
 				$result = $this->queryfunk($query);
 
-				return $message = "<div class='alert alert-success' role='alert'>Successfully Inserted</div>";
+				return $message = "<div class='alert alert-success' role='alert'>Successfully Video Uploaded</div>";
 	      }else{
 	         print_r($errors);
 	      }
 
 		}
+
+
+		
+	public function addpdf_t($data,$files,$id){
+		$pdf_title = mysqli_real_escape_string($this->db,$data['pdf_title']);
+		
+
+		$file_name = $files['pdf_file']['name'];
+		  $file_size =$files['pdf_file']['size'];
+		  $file_tmp =$files['pdf_file']['tmp_name'];
+		  $file_type=$files['pdf_file']['type'];
+		  $div            = explode('.', $file_name);
+		  $file_ext       = strtolower(end($div));
+	   
+	
+		  $uploaded_image = "pdf/".$file_name;
+		$move_image = "pdf/".$file_name;
+
+	  
+	  $extensions= array("pdf");
+	  
+	  if(in_array($file_ext,$extensions)=== false){
+		 $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+	  }
+	  
+	  /*if($file_size > 2097152){
+		 $errors[]='File size must be excately 2 MB';
+	  }*/
+	  
+	  if(empty($errors)==true){
+		 move_uploaded_file($file_tmp,$move_image);
+
+		 $query = "INSERT INTO pdf_table(pdf_title,course_id,pdf_file)VALUES('$pdf_title','$id','$uploaded_image')"; 
+			$result = $this->queryfunk($query);
+
+			return $message = "<div class='alert alert-success' role='alert'>Successfully Pdf Uploaded</div>";
+	  }else{
+		 print_r($errors);
+	  }
+
+	}
+
 
 		public function rattinginput($data,$student_id,$course_id){
 		

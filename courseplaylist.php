@@ -57,9 +57,13 @@ $(document).ready(function(){
 	<!-- search section -->
 	<?php if (isset($_SESSION['teacher_auth'])=='teacher_auth') {
 
-		if ($_SERVER['REQUEST_METHOD']=='POST') {
+		if (isset($_POST['video-up'])) {
 $sending = $senddata->addvideo_t($_POST,$_FILES,$_GET['playlistid']);
 }
+
+if (isset($_POST['pdf-up'])) {
+	$sending = $senddata->addpdf_t($_POST,$_FILES,$_GET['playlistid']);
+	}
 	 ?>
 	 <section class="search-section ss-other-page">
 		<div class="container">
@@ -75,6 +79,26 @@ $sending = $senddata->addvideo_t($_POST,$_FILES,$_GET['playlistid']);
 							<input type="text" name="video_title" placeholder="Video title">
 							<input type="file" name="video_file" class="last-m" placeholder="Video">
 							<button name="video_up" class="site-btn btn-dark">Upload Video</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="search-section ss-other-page">
+		<div class="container">
+			<div class="search-warp">
+				<div class="section-title text-white">
+					<h2><span>Upload your Pdf</span></h2>
+
+				</div>
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1">
+						<!-- search form -->
+						<form method="post" action="" class="course-search-form" enctype="multipart/form-data">
+							<input type="text" name="pdf_title" placeholder="Pdf title">
+							<input type="file" name="pdf_file" class="last-m" placeholder="pdf">
+							<button  name="pdf-up" class="site-btn btn-dark">Upload PDF</button>
 						</form>
 					</div>
 				</div>
@@ -158,6 +182,19 @@ $sending = $senddata->addvideo_t($_POST,$_FILES,$_GET['playlistid']);
 						<?php } }  ?>
 							 
 							</div>
+							<div class="btn-info mt-3 text-center">pdf list</div>
+							<ul>
+							<?php 
+						
+								$singlecourse = $viewcls->pdflist($_GET['playlistid']);
+								if ($singlecourse) {
+								foreach ($singlecourse as $row) {
+								 ?>
+								 <li style="margin-left:20px; color:white;"><a href="<?php echo $row['pdf_file'] ?>" download> <i class="fa fa-file-pdf-o" style="color:red;"></i><?php echo $row['pdf_title']?></a></li>
+
+						<?php } }  ?>
+						</ul>
+
 						</div>
 						<div class="phone-number">
 							<?php  ?><?php include 'rat.php'; ?>

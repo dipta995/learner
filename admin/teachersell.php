@@ -4,7 +4,6 @@
                 <!-- Page Heading -->
                 <div class="row" id="main" >
                     <div class="col-sm-12 col-md-12 well" id="content">
-                        
                         <table class="table">
                             <thead class="thead-light">
                               <tr>
@@ -16,7 +15,6 @@
                                 <th scope="col">Teacher Payable Fee</th>
                                 <td>Payement</td>
                                 <th scope="col">Button</th>
-
                               </tr>
                             </thead>
                             <tbody>
@@ -50,7 +48,9 @@
                                     <div class="form-group">
                                       <input type="text" name="teacher_account" class="from-controll" readonly value="<?php echo  $value['account_no'] ?>" >
                                     </div>
-                                    <?php } ?>
+                                    <?php }else{ ?>
+                                      <?php echo $value['teacher_account']; ?>(<?php echo $value['teacher_payment_type']; ?>)
+                                      <?php } ?>
                                   </td>
                                   <td>
                                     <?php if ($value['t_pay']==0) { ?>
