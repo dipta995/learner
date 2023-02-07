@@ -64,7 +64,7 @@ class InsertClass extends DatabaseConnection
         } elseif (mysqli_num_rows($res1) > 0) {
             return $message = "<div class='alert alert-danger'>This mobile no. has already been Registered!</div>";
             
-        }elseif(!preg_match("/^[01]{2}[0-9]{9}+$/", $student_phone)) {
+        }elseif(!preg_match("/^[0]{1}[1]{1}[0-9]{9}+$/", $student_phone)) {
 
 			return $message = "<div class='alert alert-danger'>Invalid Mobile Use 01 Before !</div>";
 			
@@ -107,7 +107,7 @@ class InsertClass extends DatabaseConnection
 			} elseif (mysqli_num_rows($res1) > 0) {
 				return $message = "<div class='alert alert-danger'>This mobile no. has already been Registered!</div>";
 				
-			} elseif(!preg_match("/^[01]{2}[0-9]{9}+$/", $teacher_phone)) {
+			} elseif(!preg_match("/^[0]{1}[1]{1}[0-9]{9}+$/", $teacher_phone)) {
 
 				return $message = "<div class='alert alert-danger'>Invalid Mobile Use 01 Before !</div>";
 				
