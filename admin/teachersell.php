@@ -19,14 +19,15 @@
                             </thead>
                             <tbody>
                     <?php 
+                     if (isset($_POST['enroll'])) {
+
+                      echo $senddata->paymentconfirm($_POST);
+                        }
                     $viewcat = $viewcls->teachersell();
                     if ($viewcat) {
                       $i = 0;
                       foreach ($viewcat as $value) {
-                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-                      echo $senddata->paymentconfirm($value['enrole_id'],$_POST);
-                        }
+                       
                         $i++;
                                  ?>
                               <tr>
@@ -46,6 +47,8 @@
                                       </select>
                                     </div>
                                     <div class="form-group">
+                                      <input type="hidden" value="<?php echo $value['enrole_id']; ?>" name="enrole_id">
+                                      <input type="hidden" value="<?php echo ($value['price'])-($value['price']*.2); ?>" name="teacher_pay">
                                       <input type="text" name="teacher_account" class="from-controll" readonly value="<?php echo  $value['account_no'] ?>" >
                                     </div>
                                     <?php }else{ ?>
@@ -54,7 +57,7 @@
                                   </td>
                                   <td>
                                     <?php if ($value['t_pay']==0) { ?>
-                                      <button class="btn btn-danger" >Confirm Now</button>
+                                      <button name="enroll" class="btn btn-danger" >Confirm Now</button>
                                       <?php  }else{ 
                                         echo "<button class='btn btn-success'>Paid</button>";
                                       } ?>

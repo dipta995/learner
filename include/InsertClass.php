@@ -454,22 +454,24 @@ echo "ALREADY RATED";
 					}
 				}
 			
-	public function paymentconfirm($enrole_id,$data){
+	public function paymentconfirm($data){
+		$enrole_id = mysqli_real_escape_string($this->db,$data['enrole_id']);
 		$teacher_payment_type = mysqli_real_escape_string($this->db,$data['teacher_payment_type']);
 		$teacher_account = mysqli_real_escape_string($this->db,$data['teacher_account']);
+		$teacher_pay = mysqli_real_escape_string($this->db,$data['teacher_pay']);
 				 
 						$sqls= "UPDATE enrole_student_list 
 						SET
 						teacher_payment_type = '$teacher_payment_type',
 						teacher_account = '$teacher_account',
+						teacher_pay = '$teacher_pay',
 						 pay_status = 1,
 						 t_pay = 1
 						  WHERE enrole_id = '$enrole_id'";
 					$uprow = $this->queryfunk($sqls);
 					 
 						if ($uprow) {
-							// return $message = "<div class='alert alert-success' role='alert'>Approved</div>";
-							return "<script> window.location = 'teachersell.php';</script>";
+							// return "<script> window.location = 'teachersell.php';</script>";
 						}
 					}
 				
